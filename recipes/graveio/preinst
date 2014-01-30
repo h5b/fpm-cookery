@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+# create graveio user if not existing
+if ! getent passwd graveio >/dev/null; then
+  useradd -s /bin/bash -d /usr/share/graveio graveio
+fi

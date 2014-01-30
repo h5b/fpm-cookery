@@ -1,0 +1,13 @@
+#!/bin/sh -e
+
+set -ex
+
+if [ -d /usr/share/graveio ]; then
+    chown -Rf graveio:graveio /usr/share/graveio
+
+    su - graveio /bin/sh -c 'cd /usr/share/graveio && bundle install'
+    su - graveio /bin/sh -c \
+	'rake -f /usr/share/graveio/Rakefile db:create 1>/dev/null'
+    su - graveio /bin/sh -c \
+	'rake -f /usr/share/graveio/Rakefile db:migrate 1>/dev/null'
+fi
