@@ -1,7 +1,5 @@
 #!/bin/sh -e
 
-set -ex
-
 if [ -d /usr/share/graveio ]; then
     chown -Rf graveio:graveio /usr/share/graveio
 
