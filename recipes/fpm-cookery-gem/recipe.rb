@@ -1,7 +1,7 @@
 class FpmCookeryRubyGem < FPM::Cookery::RubyGemRecipe
   name    "fpm-cookery"
-  version "0.15.0"
+  version "0.24.0"
 
   chain_package true
-  chain_recipes "fpm", "facter", "puppet", "addressable"
+  chain_recipes "fpm", "facter", "puppet", "addressable", "systemu"
 end

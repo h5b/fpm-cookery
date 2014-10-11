@@ -1,10 +1,13 @@
+require 'fpm/cookery/log'
+
 module FPM
   module Cookery
     module Utils
       protected
       # From fpm. (lib/fpm/util.rb)
       def safesystem(*args)
-        success = system(*args.flatten)
+        # Make sure to avoid nil elements in args. This might happen on 1.8.
+        success = system(*args.compact.flatten)
         if !success
           raise "'system(#{args.inspect})' failed with error code: #{$?.exitstatus}"
         end
@@ -12,12 +15,8 @@ module FPM
       end
 
       def cleanenv_safesystem(*args)
-        bundler_vars = %w(BUNDLE_GEMFILE RUBYOPT BUNDLE_BIN_PATH GEM_HOME GEM_PATH)
-        bundled_env = ENV.to_hash
-        bundler_vars.each {|var| ENV.delete(var)}
-        result = safesystem(*args)
-        ENV.replace(bundled_env.to_hash)
-        result
+        Log.warn("[DEPRECATED] Use `environment.with_clean { safesystem(...) }` instead of `cleanenv_safesystem(...)` in the recipe")
+        environment.with_clean { safesystem(*args) }
       end
 
       # From brew2deb. (lib/debian_formula.rb)

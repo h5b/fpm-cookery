@@ -24,7 +24,7 @@ module FPM
           @fpm.config_files += recipe.config_files
           @fpm.directories += recipe.directories
 
-          @fpm.attributes[:deb_compression] = 'gzip'
+          @fpm.attributes[:deb_compression] = 'gz'
           @fpm.attributes[:deb_user] = 'root'
           @fpm.attributes[:deb_group] = 'root'
           @fpm.attributes[:rpm_compression] = 'gzip'
@@ -39,6 +39,10 @@ module FPM
 
           # Package type specific code should be called in package_setup.
           package_setup
+
+          # combine recipe specific fpm attributes. here allows to
+          # overwrite the values from package_setup().
+          @fpm.attributes.merge!(recipe.fpm_attributes)
 
           # The input for the FPM package will be set here.
           package_input
@@ -84,8 +88,10 @@ module FPM
         end
 
         # XXX should go away and set in initializer
-        def version=(value)
-          fpm.version = value
+        def version=(version)
+          fpm.version = version.version
+          fpm.iteration = version.revision
+          fpm.vendor = version.vendor
         end
 
         def maintainer=(value)

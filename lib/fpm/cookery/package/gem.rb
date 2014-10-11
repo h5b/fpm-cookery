@@ -1,5 +1,6 @@
 require 'fpm/package/gem'
 require 'fpm/cookery/package/package'
+require 'fpm/cookery/utils'
 
 module FPM
   module Cookery
@@ -17,7 +18,9 @@ module FPM
         end
 
         def package_input
-          fpm.input(recipe.name)
+          recipe.environment.with_clean do
+            fpm.input(recipe.name)
+          end
         end
       end
     end

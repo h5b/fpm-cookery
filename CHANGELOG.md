@@ -1,3 +1,62 @@
+# v0.25.0 (2014-08-03)
+* Add `environment` method to recipe to handle environment settings.
+* Allow newer FPM versions than 1.1.
+* Unbreak `configure` call without arguments on Ruby 1.8. (#92)
+* Basic Scientific Linux support. (jjuarez / #93)
+* Update internal recipes. (smasset / #89)
+
+# v0.24.0 (2014-06-03)
+* Add amazon linux to the list of RPM-based distros. (skottler / #88)
+* Add support for PEAR packages. (mlafeldt / #85)
+* Add support for CPAN packages. (mlafeldt / #87)
+
+# v0.23.0 (2014-05-29)
+* Add `--skip-package` command line flag. (#86)
+
+# v0.22.0 (2014-05-26)
+* Add support to set arbitrary fpm attributes via `fpm_attributes`.
+  (unakatsuo / #75, #80)
+* Require fpm `~> 1.1.0`. (ryansch / #84)
+
+# v0.21.0 (2014-04-07)
+* Unbreak rpm packages by reverting the `%files` change from #67.
+* Remove default revision. (smasset / #76)
+  __WARNING__: This changes the default package names and metadata!
+* Add support for python/pypi packages. (Mic92 / #73, smasset / #78)
+
+# v0.20.1 (2014-03-14)
+* Unbreak omnibus and chain packagers. (#69)
+
+# v0.20.0 (2014-03-07)
+* Add `--tmp-root` command line option.
+* Add `--pkg-dir` command line option.
+* Add `--cache-dir` command line option.
+* Fix `%files` section in rpms. (unakatsuo / #67)
+
+# v0.19.0 (2014-03-03)
+* Correctly set version, iteration and vendor on the FPM object.
+  __WARNING__: This changes the default package names!
+
+# v0.18.0 (2014-03-01)
+* Do not set a default value for the vendor attribute.
+  __WARNING__: This changes the default package names!
+* Change package name computation regarding version, revision and vendor.
+  __WARNING__: This changes the default package names!
+* Start default revision at 1.
+* Unbreak omnibus packaging. (#64)
+* Add support for npm recipes. (bracki / #65)
+
+# v0.17.1 (2014-02-07)
+* Unbreak deb package building.
+
+# v0.17.0 (2014-02-01)
+* Update fpm dependency to 1.0.0. (joschi / #62)
+* Add `-q` command line option to disable progress bars. (#58)
+* Add `directories` recipe attribute. (#53)
+* Add `autogen` build helper. (sepulworld/autogen-support / #54)
+* Add `root_prefix` and `root` path helper. (sepulworld/set-root-prefix / #52)
+* Support recursive omnibus recipes dependencies. (avishai-ish-shalom / #49)
+
 # v0.16.2 (2013-10-19)
 * Add support for submodules in git provider. (narkisr / #50)
 * Set a default maintainer.
